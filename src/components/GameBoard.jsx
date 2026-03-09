@@ -35,7 +35,8 @@ const [flashColor,setFlashColor] = useState(null);   // ⭐ NEW
 
   const saveScore = async (score) => {
     try {
-      await axios.post("http://localhost:5000/api/score", {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+      await axios.post(`${apiUrl}/score`, {
         username: "player1",
         score: score
       });

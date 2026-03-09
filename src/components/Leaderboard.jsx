@@ -9,7 +9,8 @@ export default function Leaderboard(){
 
     const fetchScores = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/scores");
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+        const res = await axios.get(`${apiUrl}/scores`);
         setScores(Array.isArray(res.data) ? res.data : []);
       } catch (err) {
         console.error("Error fetching scores:", err);
