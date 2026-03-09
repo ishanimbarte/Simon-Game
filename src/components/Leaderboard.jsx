@@ -8,8 +8,13 @@ export default function Leaderboard(){
   useEffect(()=>{
 
     const fetchScores = async () => {
-      const res = await axios.get("http://localhost:5000/api/scores");
-      setScores(res.data);
+      try {
+        const res = await axios.get("http://localhost:5000/api/scores");
+        setScores(Array.isArray(res.data) ? res.data : []);
+      } catch (err) {
+        console.error("Error fetching scores:", err);
+        setScores([]);
+      }
     };
 
     fetchScores();
