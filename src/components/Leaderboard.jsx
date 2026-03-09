@@ -9,7 +9,8 @@ export default function Leaderboard(){
 
     const fetchScores = async () => {
       try {
-        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+        // Try production URL first, fallback to localhost
+        const apiUrl = import.meta.env.VITE_API_URL || 'https://simon-game-production-3e59.up.railway.app/api';
         const res = await axios.get(`${apiUrl}/scores`);
         setScores(Array.isArray(res.data) ? res.data : []);
       } catch (err) {

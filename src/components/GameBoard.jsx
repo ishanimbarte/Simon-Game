@@ -35,7 +35,8 @@ const [flashColor,setFlashColor] = useState(null);   // ⭐ NEW
 
   const saveScore = async (score) => {
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+      // Try production URL first, fallback to localhost
+      const apiUrl = import.meta.env.VITE_API_URL || 'https://simon-game-production-3e59.up.railway.app/api';
       await axios.post(`${apiUrl}/score`, {
         username: "player1",
         score: score
